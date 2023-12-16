@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Create test</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/materialize.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/materialize.min.js}"></script>
+    <script th:src="@{/js/index.js}"></script>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo right"></a>
+        <ul id="nav-mobile" class="left">
+            <li>
+                <span>Current user is: </span>
+                <span th:text="${userName}"></span>
+            </li>
+            <li>
+                <a href="/logout">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="card-panel yellow lighten-5 center">
+    <div>Название теста</div>
+    <div id="testTitle" th:text="${test.getTestTitle()}"></div>
+    <div class="card-panel" style="margin-left: -2%" id="questionsList">
+        <h4>Вопросs:</h4>
+        <div>
+            <div id="questions">
+                <form action="#" th:each="question : ${test.getQuestions()}">
+                    <p>
+                        <label>
+                            <input class="with-gap" name="group1" type="radio" />
+                            <span th:id="${question.getId()}" th:text="${question.getText()}"></span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
